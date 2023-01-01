@@ -6,7 +6,7 @@
   CompanyName = 'v77 Development'
   Copyright = '(c) 2023 v77 Development. All rights reserved.'
   Description = 'Compress end expand RAR archive.'
-  PowerShellVersion = '7.2'
+  PowerShellVersion = '7.1'
   FunctionsToExport = @('Compress-RAR', 'Expand-RAR')
   CmdletsToExport = @()
   AliasesToExport = @()
