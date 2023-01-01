@@ -16,8 +16,13 @@ function Compress-RAR() {
     [string[]]$P_Files
   )
 
+  $RAR = "$($PSScriptRoot)\Rar.exe"
+  if (Test-Path -Path "$($ENV:ProgramFiles)\WinRAR\Rar.exe" -PathType "Leaf") {
+    $RAR = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
+  }
+
   ForEach ($File in (Get-ChildItem $($P_Files))) {
-    & "$($ENV:ProgramFiles)\WinRAR\Rar.exe" a "$($File.Name + '.rar')" "$($File.FullName)"
+    & "$($RAR)" a "$($File.Name + '.rar')" "$($File.FullName)"
   }
 }
 
@@ -39,7 +44,12 @@ function Expand-RAR() {
     [string[]]$P_Files
   )
 
+  $RAR = "$($PSScriptRoot)\Rar.exe"
+  if (Test-Path -Path "$($ENV:ProgramFiles)\WinRAR\Rar.exe" -PathType "Leaf") {
+    $RAR = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
+  }
+
   ForEach ($File in (Get-ChildItem "$($P_Files)")) {
-    & "$($ENV:ProgramFiles)\WinRAR\Rar.exe" x "$($File.FullName)"
+    & "$($RAR)" x "$($File.FullName)"
   }
 }
