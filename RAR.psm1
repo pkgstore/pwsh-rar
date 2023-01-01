@@ -14,12 +14,12 @@ Param(
 
 function Compress-RAR() {
   ForEach ($File in (Get-ChildItem $($P_Files))) {
-    & "$($env:ProgramFiles)\WinRAR\Rar.exe" a "$($File.Name + '.rar')" "$($File.FullName)"
+    & "$($ENV:ProgramFiles)\WinRAR\Rar.exe" a "$($File.Name + '.rar')" "$($File.FullName)"
   }
 }
 
 function Expand-RAR() {
   ForEach ($File in (Get-ChildItem "$($P_Files)")) {
-    & "$($env:ProgramFiles)\WinRAR\Rar.exe" x "$($File.FullName)"
+    & "$($ENV:ProgramFiles)\WinRAR\Rar.exe" x "$($File.FullName)"
   }
 }
