@@ -3,5 +3,5 @@
 ## Install
 
 ```powershell
-git clone 'https://github.com/shellstore/pwsh-rar.git' "$($ENV:UserProfile)\Documents\PowerShell\Modules\RAR";
+git clone 'https://github.com/pkgstore/pwsh-rar.git' "$($ENV:UserProfile)\Documents\PowerShell\Modules\RAR";
 ```
