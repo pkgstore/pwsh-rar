@@ -9,6 +9,5 @@
   PowerShellVersion = '7.2'
   FunctionsToExport = @('Compress-RAR', 'Expand-RAR')
   CmdletsToExport = @()
-  VariablesToExport = '*'
   AliasesToExport = @()
 }
