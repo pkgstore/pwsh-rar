@@ -21,12 +21,12 @@ function Compress-RAR() {
     [Alias("F", "File", "Files")]
     [string[]]$P_File,
 
-    [Parameter(HelpMessage="Compression level (0-store / 3-default / 5-maximal). Default: 3.")]
+    [Parameter(HelpMessage="Compression level (0-store | 3-default | 5-maximal). Default: 3.")]
     [ValidateRange(0,5)]
     [Alias("M", "CompressionLevel", "Level")]
     [int]$P_M = 3,
 
-    [Parameter(HelpMessage="Specify version of archiving format (4 / 5). Default: 5.")]
+    [Parameter(HelpMessage="Specify version of archiving format (4 | 5). Default: 5.")]
     [ValidateRange(4,5)]
     [Alias("MA", "Version")]
     [int]$P_MA = 5,
