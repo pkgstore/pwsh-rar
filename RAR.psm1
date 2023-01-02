@@ -17,8 +17,15 @@ function Compress-RAR() {
   )
 
   $RAR = "$($PSScriptRoot)\Rar.exe"
-  if (Test-Path -Path "$($ENV:ProgramFiles)\WinRAR\Rar.exe" -PathType "Leaf") {
-    $RAR = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
+  $RAR_PF = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
+  $RAR_PF86 = "$($ENV:ProgramFiles(x86))\WinRAR\Rar.exe"
+
+  if (Test-Path -Path "$($RAR_PF)" -PathType "Leaf") {
+    $RAR = "$($RAR_PF)"
+  } elseif (Test-Path -Path "$($RAR_PF86)" -PathType "Leaf") {
+    $RAR = "$($RAR_PF86)"
+  } else {
+    Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
   ForEach ($File in (Get-ChildItem $($P_Files))) {
@@ -45,8 +52,15 @@ function Expand-RAR() {
   )
 
   $RAR = "$($PSScriptRoot)\Rar.exe"
-  if (Test-Path -Path "$($ENV:ProgramFiles)\WinRAR\Rar.exe" -PathType "Leaf") {
-    $RAR = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
+  $RAR_PF = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
+  $RAR_PF86 = "$($ENV:ProgramFiles(x86))\WinRAR\Rar.exe"
+
+  if (Test-Path -Path "$($RAR_PF)" -PathType "Leaf") {
+    $RAR = "$($RAR_PF)"
+  } elseif (Test-Path -Path "$($RAR_PF86)" -PathType "Leaf") {
+    $RAR = "$($RAR_PF86)"
+  } else {
+    Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
   ForEach ($File in (Get-ChildItem "$($P_Files)")) {
