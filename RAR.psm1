@@ -3,28 +3,37 @@ function Compress-RAR() {
     .SYNOPSIS
       Compress 'RAR' archive.
     .DESCRIPTION
+      -F
+        File list.
+      -M
+        Compression level (0-store / 3-default / 5-maximal).
+      -MA
+        Specify version of archiving format (4 / 5).
+        Default: 5.
+      -PWD | -HP | -P
+        Password. Encrypt both file data and headers.
   #>
 
   [CmdletBinding()]
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
-    [Alias("F", "Files", "File")]
+    [Alias("F", "File", "Files")]
     [string[]]$P_File,
 
-    [Parameter(HelpMessage="Compression level (0-store / 3-default / 5-maximal).")]
+    [Parameter(HelpMessage="Compression level (0-store / 3-default / 5-maximal). Default: 3.")]
     [ValidateRange(0,5)]
     [Alias("M", "CompressionLevel", "Level")]
     [int]$P_M = 3,
 
-    [Parameter(HelpMessage="Specify version of archiving format.")]
+    [Parameter(HelpMessage="Specify version of archiving format (4 / 5). Default: 5.")]
     [ValidateRange(4,5)]
     [Alias("MA", "Version")]
     [int]$P_MA = 5,
 
-    [Parameter(HelpMessage="Encrypt both file data and headers.")]
-    [Alias("HP", "P", "Password")]
-    [string]$P_PWD = ""
+    [Parameter(HelpMessage="Password. Encrypt both file data and headers.")]
+    [Alias("PWD", "HP", "P", "Password")]
+    [string]$P_PWD
   )
 
   $RAR = "$($PSScriptRoot)\Rar.exe"
@@ -51,13 +60,15 @@ function Expand-RAR() {
     .SYNOPSIS
       Expand 'RAR' archive.
     .DESCRIPTION
+      -F
+        File list.
   #>
 
   [CmdletBinding()]
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
-    [Alias("F", "Files", "File")]
+    [Alias("F", "File", "Files")]
     [string[]]$P_File
   )
 
