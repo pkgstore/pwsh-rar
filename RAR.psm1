@@ -6,9 +6,9 @@ function Compress-RAR() {
       -F
         File list.
       -M
-        Compression level (0-store / 3-default / 5-maximal).
+        Compression level (0-store | 3-default | 5-maximal).
       -MA
-        Specify version of archiving format (4 / 5).
+        Specify version of archiving format (4 | 5).
         Default: 5.
       -PWD | -HP | -P
         Password. Encrypt both file data and headers.
