@@ -10,7 +10,7 @@ function Compress-RAR() {
   Param(
     [Parameter(
       Mandatory,
-      HelpMessage="Enter file names..."
+      HelpMessage="File list."
     )]
     [Alias("F")]
     [string[]]$P_Files
@@ -45,7 +45,7 @@ function Expand-RAR() {
   Param(
     [Parameter(
       Mandatory,
-      HelpMessage="Enter file names..."
+      HelpMessage="File list."
     )]
     [Alias("F")]
     [string[]]$P_Files
