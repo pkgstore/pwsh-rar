@@ -48,10 +48,10 @@ function Compress-RAR() {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  if (-not ([string]::IsNullOrEmpty($P_PWD))) { $P_PWD = "-hp$($P_PWD)" }
-
   ForEach ($File in (Get-ChildItem $($P_File))) {
-    & "$($RAR)" -m$($P_M) -ma$($P_MA) $($P_PWD) a "$($File.Name + '.rar')" "$($File.FullName)"
+    $CMD = @("a", "-m$($P_M)", "-ma$($P_MA)", "$($P_PWD)", "$($File.Name + '.rar')", "$($File.FullName)")
+    if (-not ([string]::IsNullOrEmpty($P_PWD))) { $CMD += "-hp$($P_PWD)" }
+    & "$($RAR)" $CMD
   }
 }
 
@@ -85,6 +85,7 @@ function Expand-RAR() {
   }
 
   ForEach ($File in (Get-ChildItem "$($P_File)")) {
-    & "$($RAR)" x "$($File.FullName)"
+    $CMD = @("x", "$($File.FullName)")
+    & "$($RAR)" $CMD
   }
 }
