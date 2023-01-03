@@ -36,23 +36,23 @@ function Compress-RAR() {
     [string]$P_PWD
   )
 
-  $RAR = "$($PSScriptRoot)\Rar.exe"
-  $RAR_PF = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
-  $RAR_PF86 = "$($ENV:ProgramFiles(x86))\WinRAR\Rar.exe"
+  $RAR = "${PSScriptRoot}\Rar.exe"
+  $RAR_PF = "${ENV:ProgramFiles}\WinRAR\Rar.exe"
+  $RAR_PF86 = "${ENV:ProgramFiles(x86)}\WinRAR\Rar.exe"
 
-  if (Test-Path -Path "$($RAR_PF)" -PathType "Leaf") {
-    $RAR = "$($RAR_PF)"
-  } elseif (Test-Path -Path "$($RAR_PF86)" -PathType "Leaf") {
-    $RAR = "$($RAR_PF86)"
+  if ( Test-Path -Path "${RAR_PF}" -PathType "Leaf" ) {
+    $RAR = "${RAR_PF}"
+  } elseif ( Test-Path -Path "${RAR_PF86}" -PathType "Leaf" ) {
+    $RAR = "${RAR_PF86}"
   } else {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ($File in (Get-ChildItem $($P_File))) {
-    $CMD = @("a", "-m$($P_M)", "-ma$($P_MA)")
-    if (-not ([string]::IsNullOrEmpty($P_PWD))) { $CMD += "-hp$($P_PWD)" }
-    $CMD += @("$($File.Name + '.rar')", "$($File.FullName)")
-    & "$($RAR)" $CMD
+  ForEach ( $File in ( Get-ChildItem ${P_File} ) ) {
+    $CMD = @( "a", "-m${P_M}", "-ma${P_MA}" )
+    if ( -not ( [string]::IsNullOrEmpty(${P_PWD}) ) ) { $CMD += "-hp${P_PWD}" }
+    $CMD += @( "$( ${File}.Name + '.rar' )", "$( ${File}.FullName )" )
+    & "${RAR}" $CMD
   }
 }
 
@@ -73,20 +73,20 @@ function Expand-RAR() {
     [string[]]$P_File
   )
 
-  $RAR = "$($PSScriptRoot)\Rar.exe"
-  $RAR_PF = "$($ENV:ProgramFiles)\WinRAR\Rar.exe"
-  $RAR_PF86 = "$($ENV:ProgramFiles(x86))\WinRAR\Rar.exe"
+  $RAR = "${PSScriptRoot}\Rar.exe"
+  $RAR_PF = "${ENV:ProgramFiles}\WinRAR\Rar.exe"
+  $RAR_PF86 = "${ENV:ProgramFiles(x86)}\WinRAR\Rar.exe"
 
-  if (Test-Path -Path "$($RAR_PF)" -PathType "Leaf") {
-    $RAR = "$($RAR_PF)"
-  } elseif (Test-Path -Path "$($RAR_PF86)" -PathType "Leaf") {
-    $RAR = "$($RAR_PF86)"
+  if ( Test-Path -Path "${RAR_PF}" -PathType "Leaf" ) {
+    $RAR = "${RAR_PF}"
+  } elseif ( Test-Path -Path "${RAR_PF86}" -PathType "Leaf" ) {
+    $RAR = "${RAR_PF86}"
   } else {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ($File in (Get-ChildItem "$($P_File)")) {
-    $CMD = @("x", "$($File.FullName)")
-    & "$($RAR)" $CMD
+  ForEach ( $File in ( Get-ChildItem "${P_File}" ) ) {
+    $CMD = @( "x", "$( ${File}.FullName )" )
+    & "${RAR}" $CMD
   }
 }
