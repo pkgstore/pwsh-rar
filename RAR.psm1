@@ -18,21 +18,21 @@ function Compress-RAR() {
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
-    [Alias("F", "File", "Files")]
+    [Alias('F', 'File', 'Files')]
     [string[]]$P_File,
 
     [Parameter(HelpMessage="Compression level (0-store | 3-default | 5-maximal). Default: 3.")]
     [ValidateRange(0,5)]
-    [Alias("M", "CompressionLevel", "Level")]
+    [Alias('M', 'CompressionLevel', 'Level')]
     [int]$P_M = 3,
 
     [Parameter(HelpMessage="Specify version of archiving format (4 | 5). Default: 5.")]
     [ValidateRange(4,5)]
-    [Alias("MA", "Version")]
+    [Alias('MA', 'Version')]
     [int]$P_MA = 5,
 
     [Parameter(HelpMessage="Password. Encrypt both file data and headers.")]
-    [Alias("PWD", "HP", "P", "Password")]
+    [Alias('PWD', 'HP', 'P', 'Password')]
     [string]$P_PWD
   )
 
@@ -69,7 +69,7 @@ function Expand-RAR() {
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
-    [Alias("F", "File", "Files")]
+    [Alias('F', 'File', 'Files')]
     [string[]]$P_File
   )
 
