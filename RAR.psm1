@@ -49,8 +49,9 @@ function Compress-RAR() {
   }
 
   ForEach ($File in (Get-ChildItem $($P_File))) {
-    $CMD = @("a", "-m$($P_M)", "-ma$($P_MA)", "$($P_PWD)", "$($File.Name + '.rar')", "$($File.FullName)")
+    $CMD = @("a", "-m$($P_M)", "-ma$($P_MA)")
     if (-not ([string]::IsNullOrEmpty($P_PWD))) { $CMD += "-hp$($P_PWD)" }
+    $CMD += @("$($File.Name + '.rar')", "$($File.FullName)")
     & "$($RAR)" $CMD
   }
 }
