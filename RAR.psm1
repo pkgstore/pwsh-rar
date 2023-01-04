@@ -73,6 +73,7 @@ function Expand-RAR() {
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
+    [SupportsWildcards()]
     [Alias('File', 'F')]
     [string[]]$Files
   )
