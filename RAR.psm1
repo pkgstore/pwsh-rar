@@ -55,7 +55,7 @@ function Compress-RAR() {
   ForEach ( $File in ( Get-ChildItem ${Files} ) ) {
     $CMD = @( "a", "-m${Level}", "-ma${Version}" )
     if ( -not ( [string]::IsNullOrEmpty(${Password}) ) ) { $CMD += "-hp${Password}" }
-    $CMD += @( "$( ${File}.Name + '.rar' )", "$( ${File}.FullName )" )
+    $CMD += @( "$( ${File}.FullName + '.rar' )", "$( ${File}.FullName )" )
     & "${RAR}" $CMD
   }
 }
