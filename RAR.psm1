@@ -5,11 +5,11 @@ function Compress-RAR() {
     .DESCRIPTION
       -F
         File list.
-      -M
+      -L
         Compression level.
         Value: [0 | ... | 5].
         Default: 3.
-      -MA
+      -V
         Specify version of archiving format.
         Value: [4 | 5].
         Default: 5.
@@ -21,22 +21,22 @@ function Compress-RAR() {
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
-    [Alias('F', 'File', 'Files')]
-    [string[]]$P_File,
+    [Alias('Files', 'File', 'F')]
+    [string[]]$Files,
 
     [Parameter(HelpMessage="Compression level. Value: [0 | ... | 5]. Default: 3.")]
     [ValidateRange(0,5)]
-    [Alias('M', 'CompressionLevel', 'Level')]
-    [int]$P_M = 3,
+    [Alias('Level', 'L')]
+    [int]$Level = 3,
 
     [Parameter(HelpMessage="Specify version of archiving format. Value: [4 | 5]. Default: 5.")]
     [ValidateRange(4,5)]
-    [Alias('MA', 'Version')]
-    [int]$P_MA = 5,
+    [Alias('Version', 'Ver', 'V', 'MA')]
+    [int]$Version = 5,
 
     [Parameter(HelpMessage="Password. Encrypt both file data and headers.")]
-    [Alias('PWD', 'HP', 'P', 'Password')]
-    [string]$P_PWD
+    [Alias('Password', 'PWD', 'P', 'HP')]
+    [string]$Password
   )
 
   $RAR = "${PSScriptRoot}\Rar.exe"
@@ -51,9 +51,9 @@ function Compress-RAR() {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ( $File in ( Get-ChildItem ${P_File} ) ) {
-    $CMD = @( "a", "-m${P_M}", "-ma${P_MA}" )
-    if ( -not ( [string]::IsNullOrEmpty(${P_PWD}) ) ) { $CMD += "-hp${P_PWD}" }
+  ForEach ( $File in ( Get-ChildItem ${Files} ) ) {
+    $CMD = @( "a", "-m${Level}", "-ma${Version}" )
+    if ( -not ( [string]::IsNullOrEmpty(${Password}) ) ) { $CMD += "-hp${Password}" }
     $CMD += @( "$( ${File}.Name + '.rar' )", "$( ${File}.FullName )" )
     & "${RAR}" $CMD
   }
@@ -72,8 +72,8 @@ function Expand-RAR() {
 
   Param(
     [Parameter(Mandatory, HelpMessage="File list.")]
-    [Alias('F', 'File', 'Files')]
-    [string[]]$P_File
+    [Alias('Files', 'File', 'F')]
+    [string[]]$Files
   )
 
   $RAR = "${PSScriptRoot}\Rar.exe"
@@ -88,7 +88,7 @@ function Expand-RAR() {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ( $File in ( Get-ChildItem "${P_File}" ) ) {
+  ForEach ( $File in ( Get-ChildItem "${Files}" ) ) {
     $CMD = @( "x", "$( ${File}.FullName )" )
     & "${RAR}" $CMD
   }
