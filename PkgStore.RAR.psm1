@@ -22,18 +22,18 @@ function Compress-RAR() {
   Param(
     [Parameter(Mandatory)]
     [SupportsWildcards()]
-    [Alias('File', 'F')]
+    [Alias('F')]
     [string[]]${Files},
 
     [ValidateRange(0,5)]
-    [Alias('LVL', 'L')]
+    [Alias('L')]
     [int]${Level} = 3,
 
     [ValidateRange(4,5)]
-    [Alias('VER', 'V', 'MA')]
+    [Alias('V')]
     [int]${Version} = 5,
 
-    [Alias('PWD', 'P', 'HP')]
+    [Alias('P')]
     [string]${Password}
   )
 
@@ -49,8 +49,8 @@ function Compress-RAR() {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ( ${File} in ( Get-ChildItem ${Files} ) ) {
-    ${FullName} = "$( ${File}.FullName )"
+  ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
+    ${FullName} = "$( ${F}.FullName )"
     ${CMD} = @( "a", "-m${Level}", "-ma${Version}" )
     if ( -not ( [string]::IsNullOrEmpty(${Password}) ) ) { ${CMD} += "-hp${Password}" }
     ${CMD} += @( "$( ${FullName} + '.rar' )", "${FullName}" )
@@ -73,7 +73,7 @@ function Expand-RAR() {
   Param(
     [Parameter(Mandatory)]
     [SupportsWildcards()]
-    [Alias('File', 'F')]
+    [Alias('F')]
     [string[]]${Files}
   )
 
@@ -89,8 +89,8 @@ function Expand-RAR() {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ( ${File} in ( Get-ChildItem ${Files} ) ) {
-    ${FullName} = "$( ${File}.FullName )"
+  ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
+    ${FullName} = "$( ${F}.FullName )"
     ${CMD} = @( "x", "${FullName}" )
 
     & "${RAR}" ${CMD}
