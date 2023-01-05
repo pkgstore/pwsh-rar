@@ -3,18 +3,18 @@ function Compress-RAR() {
     .SYNOPSIS
       Compress 'RAR' archive.
     .DESCRIPTION
-      -F
-        File list.
-      -L
-        Compression level.
-        Value: [0 | ... | 5].
-        Default: 3.
-      -V
-        Specify version of archiving format.
-        Value: [4 | 5].
-        Default: 5.
-      -PWD | -HP | -P
-        Password. Encrypt both file data and headers.
+    .PARAMETER F
+      File list.
+    .PARAMETER L
+      Compression level.
+      Value: [0 | ... | 5].
+      Default: 3.
+    .PARAMETER V
+      Specify version of archiving format.
+      Value: [4 | 5].
+      Default: 5.
+    .PARAMETER P
+      Password. Encrypt both file data and headers.
   #>
 
   [CmdletBinding()]
@@ -64,8 +64,8 @@ function Expand-RAR() {
     .SYNOPSIS
       Expand 'RAR' archive.
     .DESCRIPTION
-      -F
-        File list.
+    .PARAMETER F
+      File list.
   #>
 
   [CmdletBinding()]
