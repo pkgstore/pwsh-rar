@@ -5,21 +5,25 @@ function Compress-RAR() {
 
     .DESCRIPTION
 
-    .PARAMETER F
+    .PARAMETER Files
       File list.
+      Alias: '-F'.
 
-    .PARAMETER L
+    .PARAMETER Level
       Compression level.
       Value: [0 | ... | 5].
       Default: 3.
+      Alias: '-L'.
 
-    .PARAMETER V
+    .PARAMETER Version
       Specify version of archiving format.
       Value: [4 | 5].
       Default: 5.
+      Alias: '-V'.
 
-    .PARAMETER P
+    .PARAMETER Password
       Password. Encrypt both file data and headers.
+      Alias: '-P'.
   #>
 
   [CmdletBinding()]
@@ -71,8 +75,9 @@ function Expand-RAR() {
 
     .DESCRIPTION
 
-    .PARAMETER F
+    .PARAMETER Files
       File list.
+      Alias: '-F'.
   #>
 
   [CmdletBinding()]
