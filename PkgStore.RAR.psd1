@@ -1,5 +1,5 @@
 @{
-  RootModule = 'RAR.psm1'
+  RootModule = 'PkgStore.RAR.psm1'
   ModuleVersion = '1.0.0'
   GUID = '7425b74b-b74d-4bb5-bbdf-412008b793dc'
   Author = 'Kitsune Solar'
