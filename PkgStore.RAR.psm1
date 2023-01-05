@@ -20,22 +20,19 @@ function Compress-RAR() {
   [CmdletBinding()]
 
   Param(
-    [Parameter(Mandatory, HelpMessage="File list.")]
+    [Parameter(Mandatory)]
     [SupportsWildcards()]
     [Alias('File', 'F')]
     [string[]]${Files},
 
-    [Parameter(HelpMessage="Compression level. Value: [0 | ... | 5]. Default: 3.")]
     [ValidateRange(0,5)]
     [Alias('LVL', 'L')]
     [int]${Level} = 3,
 
-    [Parameter(HelpMessage="Specify version of archiving format. Value: [4 | 5]. Default: 5.")]
     [ValidateRange(4,5)]
     [Alias('VER', 'V', 'MA')]
     [int]${Version} = 5,
 
-    [Parameter(HelpMessage="Password. Encrypt both file data and headers.")]
     [Alias('PWD', 'P', 'HP')]
     [string]${Password}
   )
@@ -74,7 +71,7 @@ function Expand-RAR() {
   [CmdletBinding()]
 
   Param(
-    [Parameter(Mandatory, HelpMessage="File list.")]
+    [Parameter(Mandatory)]
     [SupportsWildcards()]
     [Alias('File', 'F')]
     [string[]]${Files}
