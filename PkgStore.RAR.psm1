@@ -92,7 +92,7 @@ function Expand-RAR() {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
 
-  ForEach ( ${File} in ( Get-ChildItem "${Files}" ) ) {
+  ForEach ( ${File} in ( Get-ChildItem ${Files} ) ) {
     ${FullName} = "$( ${File}.FullName )"
     ${CMD} = @( "x", "${FullName}" )
 
