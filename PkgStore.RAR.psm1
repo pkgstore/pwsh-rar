@@ -24,6 +24,18 @@ function Compress-RAR() {
     .PARAMETER Password
       Password. Encrypt both file data and headers.
       Alias: '-P'.
+
+    .EXAMPLE
+      Compress-RAR -F '*.iso', '*.txt'
+
+    .EXAMPLE
+      Compress-RAR -F '*.txt' -L 5
+
+    .LINK
+      Package Store: https://github.com/pkgstore
+
+    .NOTES
+      Author: Kitsune Solar <mail@kitsune.solar>
   #>
 
   [CmdletBinding()]
@@ -78,6 +90,15 @@ function Expand-RAR() {
     .PARAMETER Files
       File list.
       Alias: '-F'.
+
+    .EXAMPLE
+      Expand-RAR -F '*.rar'
+
+    .LINK
+      Package Store: https://github.com/pkgstore
+
+    .NOTES
+      Author: Kitsune Solar <mail@kitsune.solar>
   #>
 
   [CmdletBinding()]
