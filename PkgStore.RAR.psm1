@@ -59,8 +59,8 @@ function Compress-RAR() {
   )
 
   ${RAR} = "${PSScriptRoot}\Rar.exe"
-  ${RAR_PF} = "${ENV:ProgramFiles}\WinRAR\Rar.exe"
-  ${RAR_PF86} = "${ENV:ProgramFiles(x86)}\WinRAR\Rar.exe"
+  ${RAR_PF} = "${env:ProgramFiles}\WinRAR\Rar.exe"
+  ${RAR_PF86} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
 
   if ( Test-Path -Path "${RAR_PF}" -PathType "Leaf" ) {
     ${RAR} = "${RAR_PF}"
@@ -111,8 +111,8 @@ function Expand-RAR() {
   )
 
   ${RAR} = "${PSScriptRoot}\Rar.exe"
-  ${RAR_PF} = "${ENV:ProgramFiles}\WinRAR\Rar.exe"
-  ${RAR_PF86} = "${ENV:ProgramFiles(x86)}\WinRAR\Rar.exe"
+  ${RAR_PF} = "${env:ProgramFiles}\WinRAR\Rar.exe"
+  ${RAR_PF86} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
 
   if ( Test-Path -Path "${RAR_PF}" -PathType "Leaf" ) {
     ${RAR} = "${RAR_PF}"
