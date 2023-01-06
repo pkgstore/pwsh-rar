@@ -1,4 +1,4 @@
-# PowerShell RAR Module
+# PowerShell "RAR" Module
 
 ## Install
 
