@@ -3,5 +3,5 @@
 ## Install
 
 ```powershell
-Install-PSM -Names 'RAR'
+Install-PSM -N 'RAR'
 ```
