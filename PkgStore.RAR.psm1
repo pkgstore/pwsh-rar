@@ -58,8 +58,10 @@ function Compress-RAR() {
     [string]${Password}
   )
 
+  # RAR executable file.
   ${APP} = "${PSScriptRoot}\Rar.exe"
 
+  # Checking if a 'Rar.exe' exist.
   if ( Test-Path -Path "${env:ProgramFiles}\WinRAR\Rar.exe" -PathType "Leaf" ) {
     ${APP} = "${env:ProgramFiles}\WinRAR\Rar.exe"
   } elseif ( Test-Path -Path "${env:ProgramFiles(x86)}\WinRAR\Rar.exe" -PathType "Leaf" ) {
@@ -69,10 +71,12 @@ function Compress-RAR() {
   }
 
   ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
+    # Composing a app command.
     ${CMD} = @( "a", "-m${Level}", "-ma${Version}" )
     if ( -not ( [string]::IsNullOrEmpty(${Password}) ) ) { ${CMD} += "-hp${Password}" }
     ${CMD} += @( "$( ${F}.FullName + '.rar' )", "$( ${F}.FullName )" )
 
+    # Running a app.
     & "${APP}" ${CMD}
   }
 }
@@ -107,8 +111,10 @@ function Expand-RAR() {
     [string[]]${Files}
   )
 
+  # RAR executable file.
   ${APP} = "${PSScriptRoot}\App\Rar.exe"
 
+  # Checking if a 'Rar.exe' exist.
   if ( Test-Path -Path "${env:ProgramFiles}\WinRAR\Rar.exe" -PathType "Leaf" ) {
     ${APP} = "${env:ProgramFiles}\WinRAR\Rar.exe"
   } elseif ( Test-Path -Path "${env:ProgramFiles(x86)}\WinRAR\Rar.exe" -PathType "Leaf" ) {
@@ -118,8 +124,10 @@ function Expand-RAR() {
   }
 
   ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
+    # Composing a app command.
     ${CMD} = @( "x", "$( ${F}.FullName )" )
 
+    # Running a app.
     & "${APP}" ${CMD}
   }
 }
