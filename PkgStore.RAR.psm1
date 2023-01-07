@@ -67,7 +67,7 @@ function Compress-RAR() {
   } elseif ( Test-Path -Path "${env:ProgramFiles(x86)}\WinRAR\Rar.exe" -PathType "Leaf" ) {
     ${APP} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
   } else {
-    Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
+    Write-Msg -T 'E' -M "'Rar.exe' not found!" -A 'Stop'
   }
 
   ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
@@ -120,7 +120,7 @@ function Expand-RAR() {
   } elseif ( Test-Path -Path "${env:ProgramFiles(x86)}\WinRAR\Rar.exe" -PathType "Leaf" ) {
     ${APP} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
   } else {
-    Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
+    Write-Msg -T 'E' -M "'Rar.exe' not found!" -A 'Stop'
   }
 
   ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
