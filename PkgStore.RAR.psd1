@@ -7,7 +7,13 @@
   Copyright = '(c) 2023 v77 Development. All rights reserved.'
   Description = 'Compress end expand RAR archive.'
   PowerShellVersion = '7.1'
+  RequiredModules = @('PkgStore.Kernel')
   FunctionsToExport = @('Compress-RAR', 'Expand-RAR')
-  CmdletsToExport = @()
-  AliasesToExport = @()
+  PrivateData = @{
+    PSData = @{
+      Tags = @('pwsh', 'rar')
+      LicenseUri = 'https://github.com/pkgstore/pwsh-rar/blob/main/LICENSE'
+      ProjectUri = 'https://github.com/pkgstore/pwsh-rar'
+    }
+  }
 }
