@@ -69,10 +69,9 @@ function Compress-RAR() {
   }
 
   ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
-    ${FullName} = "$( ${F}.FullName )"
     ${CMD} = @( "a", "-m${Level}", "-ma${Version}" )
     if ( -not ( [string]::IsNullOrEmpty(${Password}) ) ) { ${CMD} += "-hp${Password}" }
-    ${CMD} += @( "$( ${FullName} + '.rar' )", "${FullName}" )
+    ${CMD} += @( "$( ${F}.FullName + '.rar' )", "$( ${F}.FullName )" )
 
     & "${APP}" ${CMD}
   }
@@ -119,8 +118,7 @@ function Expand-RAR() {
   }
 
   ForEach ( ${F} in ( Get-ChildItem ${Files} ) ) {
-    ${FullName} = "$( ${F}.FullName )"
-    ${CMD} = @( "x", "${FullName}" )
+    ${CMD} = @( "x", "$( ${F}.FullName )" )
 
     & "${APP}" ${CMD}
   }
