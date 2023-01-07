@@ -58,14 +58,12 @@ function Compress-RAR() {
     [string]${Password}
   )
 
-  ${RAR} = "${PSScriptRoot}\Rar.exe"
-  ${RAR_PF} = "${env:ProgramFiles}\WinRAR\Rar.exe"
-  ${RAR_PF86} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
+  ${APP} = "${PSScriptRoot}\Rar.exe"
 
-  if ( Test-Path -Path "${RAR_PF}" -PathType "Leaf" ) {
-    ${RAR} = "${RAR_PF}"
-  } elseif ( Test-Path -Path "${RAR_PF86}" -PathType "Leaf" ) {
-    ${RAR} = "${RAR_PF86}"
+  if ( Test-Path -Path "${env:ProgramFiles}\WinRAR\Rar.exe" -PathType "Leaf" ) {
+    ${APP} = "${env:ProgramFiles}\WinRAR\Rar.exe"
+  } elseif ( Test-Path -Path "${env:ProgramFiles(x86)}\WinRAR\Rar.exe" -PathType "Leaf" ) {
+    ${APP} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
   } else {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
@@ -76,7 +74,7 @@ function Compress-RAR() {
     if ( -not ( [string]::IsNullOrEmpty(${Password}) ) ) { ${CMD} += "-hp${Password}" }
     ${CMD} += @( "$( ${FullName} + '.rar' )", "${FullName}" )
 
-    & "${RAR}" ${CMD}
+    & "${APP}" ${CMD}
   }
 }
 
@@ -110,14 +108,12 @@ function Expand-RAR() {
     [string[]]${Files}
   )
 
-  ${RAR} = "${PSScriptRoot}\Rar.exe"
-  ${RAR_PF} = "${env:ProgramFiles}\WinRAR\Rar.exe"
-  ${RAR_PF86} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
+  ${APP} = "${PSScriptRoot}\App\Rar.exe"
 
-  if ( Test-Path -Path "${RAR_PF}" -PathType "Leaf" ) {
-    ${RAR} = "${RAR_PF}"
-  } elseif ( Test-Path -Path "${RAR_PF86}" -PathType "Leaf" ) {
-    ${RAR} = "${RAR_PF86}"
+  if ( Test-Path -Path "${env:ProgramFiles}\WinRAR\Rar.exe" -PathType "Leaf" ) {
+    ${APP} = "${env:ProgramFiles}\WinRAR\Rar.exe"
+  } elseif ( Test-Path -Path "${env:ProgramFiles(x86)}\WinRAR\Rar.exe" -PathType "Leaf" ) {
+    ${APP} = "${env:ProgramFiles(x86)}\WinRAR\Rar.exe"
   } else {
     Write-Error -Message "'Rar.exe' not found!" -ErrorAction "Stop"
   }
@@ -126,6 +122,6 @@ function Expand-RAR() {
     ${FullName} = "$( ${F}.FullName )"
     ${CMD} = @( "x", "${FullName}" )
 
-    & "${RAR}" ${CMD}
+    & "${APP}" ${CMD}
   }
 }
